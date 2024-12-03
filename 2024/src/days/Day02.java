@@ -1,3 +1,4 @@
+package days;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -12,8 +13,9 @@ public class Day02 {
         
         System.out.println("...starte...");
 
-        String demoPath = "2024\\day_02\\" + "demo-input.txt";
-        String path = "2024\\day_02\\" + "input.txt";
+        String folderPath = "2024\\input\\";
+        String demoPath = folderPath + "demoInput.txt";
+        String path = folderPath + "input02.txt";
         readInput(new File(path));
 
         // Part 1
@@ -37,8 +39,9 @@ public class Day02 {
             for(String s : numArray) {
                 nums.add(Integer.parseInt(s));
             }
-            if(isSafe3(nums)) result2++;
-            if(isSafe3(nums) != isSafe2(nums)) System.out.println(nums);
+            String arr = nums.toString();
+            if(isSafe2(new ArrayList<>(nums))) result2++;
+            if(isSafe3(new ArrayList<>(nums)) != isSafe2(new ArrayList<>(nums))) System.out.println(arr);
         }
         
         System.out.println("result of part 2: " + result2);
@@ -72,21 +75,15 @@ public class Day02 {
         for(int i = 1; i < nums.size(); i++) {
             if(((nums.get(i) - nums.get(i-1)) > 0) != inc) {
                 ArrayList<Integer> nums2 = new ArrayList<Integer>(nums);
-                ArrayList<Integer> nums3 = new ArrayList<Integer>(nums);
-                nums2.remove(0);
-                nums3.remove(1);
+                nums2.remove(i-1);
                 if(isSafe(nums2)) return true;
-                if(isSafe(nums3)) return true;
                 nums.remove(i);
                 return isSafe(nums);
             }
             if((Math.abs(nums.get(i) - nums.get(i-1)) < 1) || (Math.abs(nums.get(i) - nums.get(i-1)) > 3)) {
                 ArrayList<Integer> nums2 = new ArrayList<Integer>(nums);
-                ArrayList<Integer> nums3 = new ArrayList<Integer>(nums);
-                nums2.remove(0);
-                nums3.remove(1);
+                nums2.remove(i-1);
                 if(isSafe(nums2)) return true;
-                if(isSafe(nums3)) return true;
                 nums.remove(i);
                 return isSafe(nums);
             }

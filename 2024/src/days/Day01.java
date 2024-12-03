@@ -1,3 +1,4 @@
+package days;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -13,16 +14,16 @@ public class Day01 {
 
         int result = 0;
 
-        String demoPath = "2024\\day_01\\" + "demo-input.txt";
-        String path = "2024\\day_01\\" + "input.txt";
-        readInput(new File(demoPath));
+        String folderPath = "2024\\input\\";
+        String demoPath = folderPath + "demoInput.txt";
+        String path = folderPath + "input01.txt";
+        readInput(new File(path));
 
         myList.sort(null);
         historianList.sort(null);
 
         for(int i = 0; i < myList.size(); i++) {
             result += Math.abs(myList.get(i) - historianList.get(i));
-            System.out.println(myList.get(i) + " - " +  historianList.get(i));
         }
 
         System.out.println("result of part 1: " + result);
