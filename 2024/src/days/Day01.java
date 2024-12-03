@@ -8,6 +8,7 @@ public class Day01 {
     private static ArrayList<Integer> myList;
     private static ArrayList<Integer> historianList;
 
+    @SuppressWarnings("unused")
     public static void main(String[] args) {
         
         System.out.println("...starte...");

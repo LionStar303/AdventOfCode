@@ -13,6 +13,7 @@ public class Day03 {
     private static int result2 = 0;
     private static String input;
 
+    @SuppressWarnings("unused")
     public static void main(String[] args) {
         
         System.out.println("...starte...");
