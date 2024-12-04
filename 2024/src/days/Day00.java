@@ -14,9 +14,9 @@ public class Day00 {
         
         System.out.println("...starte...");
 
-        String folderPath = "2024\\day_00\\";
+        String folderPath = "2024\\input\\";
         String demoPath = folderPath + "demo-input.txt";
-        String path = folderPath + "input.txt";
+        String path = folderPath + "input00.txt";
         readInput(new File(demoPath));
 
         // Part 1
