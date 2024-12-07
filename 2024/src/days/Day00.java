@@ -7,7 +7,7 @@ public class Day00 {
 
     private static int result1 = 0;
     private static int result2 = 0;
-    private static ArrayList<String> input;
+    private static ArrayList<String> input = new ArrayList<>();
 
     @SuppressWarnings("unused")
     public static void main(String[] args) {
