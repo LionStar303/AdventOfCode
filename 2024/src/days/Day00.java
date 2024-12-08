@@ -9,15 +9,13 @@ public class Day00 {
     private static int result2 = 0;
     private static ArrayList<String> input = new ArrayList<>();
 
-    @SuppressWarnings("unused")
     public static void main(String[] args) {
         
         System.out.println("...starte...");
 
         String folderPath = "2024\\input\\";
-        String demoPath = folderPath + "demo-input.txt";
-        String path = folderPath + "input00.txt";
-        readInput(new File(demoPath));
+        String path = folderPath + "demo-input.txt";
+        readInput(new File(path));
 
         // Part 1
 
