@@ -17,20 +17,27 @@ public class Day09 {
         String path = folderPath + "input09.txt";
         readInput(new File(path));
 
+        long time = System.currentTimeMillis();
         // einlesen
         ArrayList<String> disk = new ArrayList<>();
         for(int i = 0; i < input.length; i++) {
             if(i % 2 == 0) for(int j = 0; j < input[i]-'0'; j++) disk.add(String.valueOf(i / 2));
             else for(int j = 0; j < input[i]-'0'; j++) disk.add(".");
         }
+        time = System.currentTimeMillis() - time;
+        System.out.println("einlesen in " + time + "ms");
 
         // Part 1
+        time = System.currentTimeMillis();
         result1 = part1(new ArrayList<>(disk));
-        System.out.println("result of part 1: " + result1);
+        time = System.currentTimeMillis() - time;
+        System.out.println("result of part 1: " + result1 + " in " + time + "ms");
 
         // Part 2
+        time = System.currentTimeMillis();
         result2 = part2(new ArrayList<>(disk));
-        System.out.println("result of part 2: " + result2);
+        time = System.currentTimeMillis() - time;
+        System.out.println("result of part 2: " + result2 + " in " + time + "ms");
         System.out.println("...success...");
     }
 
