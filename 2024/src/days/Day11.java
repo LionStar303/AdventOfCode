@@ -1,15 +1,14 @@
 package days;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Day11 {
 
-    private static final int ITERATIONS = 25;
+    private static final int ITERATIONS1 = 25;
+    private static final int ITERATIONS2 = 75;
     private static int result1 = 0;
     private static int result2 = 0;
     private static String[] input;
-    private static ArrayList<String> line = new ArrayList<>();
 
     public static void main(String[] args) {
         
@@ -18,40 +17,31 @@ public class Day11 {
         String folderPath = "2024\\input\\";
         String path = folderPath + "input11.txt";
         readInput(new File(path));
-        for(String stone : input) line.add(stone);
+        long time = System.currentTimeMillis();
 
         // Part 1
-        for(int i = 0; i < ITERATIONS; i++) {
-            int length = line.size();
-            for(int j = 0; j < length; j++) {
-                String stone = line.get(j);
-                // rule 1: replace 0 by 1
-                if(Long.parseLong(stone) == 0) {
-                    line.set(j, "1");
-                    continue;
-                }
-                // rule 2: split any stone with even number of digits
-                if(stone.length() % 2 == 0) {
-                    String stone1 = stone.substring(0, stone.length() / 2);
-                    // alle führenden nullen von Stone 2 entfernen
-                    String stone2 = String.valueOf(Long.parseLong(stone.substring(stone.length() / 2)));
-                    line.set(j, stone1);
-                    line.add(j+1, stone2);
-                    length++; j++;// stone2 überspringen
-                    continue;
-                }
-                // rule 3: multiply by 2024
-                line.set(j, String.valueOf(Long.parseLong(stone) * 2024));  
-            }
-            System.out.println(i);
-        }
-        result1 = line.size();
-        System.out.println("result of part 1: " + result1);
+        for(String stone : input) result1 += getStones(stone, ITERATIONS1);
+        time = System.currentTimeMillis() - time;
+        System.out.println("result of part 1: " + result1 + " in " + time + "ms");
 
         // Part 2
-        
+        for(String stone : input) {
+            result2 += getStones(stone, ITERATIONS2);
+            System.out.println(result2);
+        }
         System.out.println("result of part 2: " + result2);
         System.out.println("...success...");
+    }
+
+    private static int getStones(String stone, int i) {
+        if(i == 0) return 1;
+        // rule 1: replace 0 by 1
+        if(Long.parseLong(stone) == 0) return getStones("1", i-1);
+        // rule 2: split any stone with even number of digits
+        if(stone.length() % 2 == 0) return getStones(stone.substring(0, stone.length() / 2), i-1) + getStones(String.valueOf(Long.parseLong(stone.substring(stone.length() / 2))), i-1);
+        // rule 3: multiply by 2024
+        return getStones(String.valueOf(Long.parseLong(stone) * 2024), i-1);
+
     }
     
     private static void readInput(File file) {
